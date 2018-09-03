@@ -1,0 +1,39 @@
+{
+  "name": "hozea",
+  "version": "0.0.1",
+  "description": "React + TypeScript + Electronしたい",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "babel src -d public/build -x '.ts,.tsx,jsx,js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.0.0",
+    "@types/electron": "^1.6.10",
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "electron": "^2.0.8",
+    "react": "^16.4.2",
+    "typescript": "^3.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "css-loader": "^1.0.0",
+    "react-dom": "^16.4.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-command": "^0.4.1"
+  }
+}
