@@ -4,8 +4,8 @@
   "description": "React + TypeScript + Electronしたい",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d public/build -x '.ts,.tsx,jsx,js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn run webpack",
+    "start": "yarn run electron ."
   },
   "author": "",
   "license": "ISC",

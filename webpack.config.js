@@ -2,16 +2,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
 	mode: 'development',
-	entry: './src/app.tsx',
+	devtool: "inline-source-map",
+	entry: './src/index.tsx',
 	output: {
 		path: `${__dirname}/dist`,
 		filename: 'bundle.js'
+	},
+	resolve: {
+		extensions: ['.ts', '.tsx', '.js']
 	},
 	module: {
 		rules: [{
 			test: /\.tsx?$/,
 			exclude: /node_modules/,
-			loader: 'babel-loader'
+			loader: 'babel-loader',
 		}, {
 			test: /\.css$/,
 			loader: ['style-loader', 'css-loader']
