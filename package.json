@@ -2,7 +2,7 @@
   "name": "hozea",
   "version": "0.0.1",
   "description": "React + TypeScript + Electronしたい",
-  "main": "src/main.js",
+  "main": "index.js",
   "scripts": {
     "build": "babel src -d public/build -x '.ts,.tsx,jsx,js'",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,6 +30,7 @@
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-module-resolver": "^3.1.1",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
     "react-dom": "^16.4.2",
     "style-loader": "^0.23.0",

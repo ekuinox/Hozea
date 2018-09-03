@@ -1,3 +1,5 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
 	mode: 'development',
 	entry: './src/app.tsx',
@@ -14,5 +16,10 @@ module.exports = {
 			test: /\.css$/,
 			loader: ['style-loader', 'css-loader']
 		}]
-	}
+	},
+	plugins: [
+		new CopyWebpackPlugin([
+			{ from: './src/index.html' },
+		])
+	],
 }
