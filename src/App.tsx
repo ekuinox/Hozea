@@ -15,10 +15,10 @@ export default class App extends React.Component<{}, State> {
         return (
             <div>
                 <p>こんにちは</p>
-                <p>
-                    {this.state.counter}
-                   <button onClick={() => {this.setState({counter: this.state.counter + 1})}} >オセ！</button>
-                </p>
+                <p>counter: {this.state.counter}</p>
+                <p><button onClick={() => {this.setState({counter: this.state.counter + 1})}} >オセ！</button></p>
+                <p><button onClick={() => {localStorage.setItem("app.counter", this.state.counter.toString())}}>ほぞん</button></p>
+                <p><button onClick={() => {this.setState({counter: parseInt(localStorage.getItem("app.counter"))})}}>よみこみ</button></p>
             </div>
         )
     }
