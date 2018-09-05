@@ -1,4 +1,4 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	mode: 'development',
@@ -6,7 +6,7 @@ module.exports = {
 	entry: './src/Index.tsx',
 	output: {
 		path: `${__dirname}/dist`,
-		filename: 'bundle.js'
+		filename: 'bundle.js',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
@@ -22,8 +22,9 @@ module.exports = {
 		}]
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			{ from: './src/index.html' },
-		])
+		new HtmlWebpackPlugin({
+			title: "Hozea",
+			template: "./src/index.html"
+		})
 	],
 }
