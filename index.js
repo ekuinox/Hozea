@@ -5,7 +5,6 @@ function createWindow () {
 	win = new BrowserWindow({width: 800, height: 600})
 	// ルートから見たファイルパスを指定
 	win.loadFile('dist/index.html')
-	win.webContents.openDevTools()
 	win.on('closed', () => {
 		win = null
 	})
