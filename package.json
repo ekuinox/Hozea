@@ -2,10 +2,11 @@
   "name": "hozea",
   "version": "0.0.1",
   "description": "React + TypeScript + Electronしたい",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "build": "yarn run webpack",
-    "start": "yarn run electron ."
+    "build": "rm -rf ./dist && yarn run webpack && yarn run babel ./src/Main.ts --out-file ./dist/main.js",
+    "start": "yarn run electron .",
+    "pack": "yarn run electron-packager .  hozea --platform=win32 --arch=x64 --overwrite"
   },
   "author": "",
   "license": "ISC",

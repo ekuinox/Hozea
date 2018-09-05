@@ -1,7 +1,8 @@
-const { app, BrowserWindow } = require('electron')
-let win
+import { app, BrowserWindow } from 'electron'
 
-function createWindow () {
+let win: BrowserWindow
+
+const createWindow = () => {
 	win = new BrowserWindow({width: 800, height: 600})
 	// ルートから見たファイルパスを指定
 	win.loadFile('dist/index.html')
@@ -9,6 +10,7 @@ function createWindow () {
 		win = null
 	})
 }
+
 app.on('ready', createWindow)
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {

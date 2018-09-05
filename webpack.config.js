@@ -15,26 +15,7 @@ module.exports = {
 		rules: [{
 			test: /\.tsx?$/,
 			exclude: /node_modules/,
-			use: {
-				loader: 'babel-loader',
-				options: {
-					"presets": [
-						["@babel/preset-env", {
-							"targets": {
-								"browsers": ["last 2 versions"]
-							}
-						}],
-						"@babel/preset-react",
-						"@babel/preset-typescript"
-					],
-					"plugins": [
-						["babel-plugin-module-resolver", {
-							"extensions": [".js", ".jsx", ".ts", ".tsx"],
-							"root": ["./src"]
-						}]
-					]
-				}
-			}
+			loader: 'babel-loader'
 		}, {
 			test: /\.css$/,
 			loader: ['style-loader', 'css-loader']
