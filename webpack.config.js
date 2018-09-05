@@ -1,8 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-	mode: 'development',
-	devtool: "inline-source-map",
+	mode: process.env.WEBPACK_ENV,
+	devtool: process.env.WEBPACK_ENV == 'development' ? "inline-source-map" : undefined,
 	entry: './src/Index.tsx',
 	output: {
 		path: `${__dirname}/dist`,
