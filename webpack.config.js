@@ -1,8 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const env = process.env.WEBPACK_ENV == undefined ? 'development' : process.env.WEBPACK_ENV
+
 module.exports = {
-	mode: process.env.WEBPACK_ENV,
-	devtool: process.env.WEBPACK_ENV == 'development' ? "inline-source-map" : undefined,
+	mode: env,
+	devtool: env == 'development' ? "inline-source-map" : undefined,
 	entry: './src/Index.tsx',
 	output: {
 		path: `${__dirname}/dist`,
@@ -27,4 +29,5 @@ module.exports = {
 			template: "./src/index.html"
 		})
 	],
+	target: 'electron-renderer'
 }
