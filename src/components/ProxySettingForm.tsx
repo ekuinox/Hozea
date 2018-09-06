@@ -9,7 +9,6 @@ export interface AuthenticationCredentials {
 	password?: string
 }
 
-
 interface State {
 	proxy: AuthenticationCredentials
 }
