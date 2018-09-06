@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactModal from 'react-modal'
-import ProxySettingForm from './components/ProxySettingForm'
+import ProxySettingForm from './ProxySettingForm'
 import { ipcRenderer } from 'electron';
 
 interface State {
