@@ -1,7 +1,8 @@
 import * as React from 'react'
 import * as ReactModal from 'react-modal'
 import ProxySettingForm from './ProxySettingForm'
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron'
+import { ON_NEED_PROXY } from './ProxySettingForm'
 
 interface State {
 	counter: number
@@ -19,7 +20,7 @@ export default class App extends React.Component<{}, State> {
 			ip: "",
 			modalIsOpen: false
 		}
-		ipcRenderer.on('need-proxy', () => {
+		ipcRenderer.on(ON_NEED_PROXY, () => {
 			this.setState({modalIsOpen: true})
 		})
 	}

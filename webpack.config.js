@@ -5,10 +5,13 @@ const env = process.env.WEBPACK_ENV == undefined ? 'development' : process.env.W
 module.exports = {
 	mode: env,
 	devtool: env == 'development' ? "inline-source-map" : undefined,
-	entry: './src/Index.tsx',
+	entry: {
+		'renderer': './src/Index.tsx',
+		'main': './src/Main.ts'
+	},
 	output: {
 		path: `${__dirname}/dist`,
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js']
@@ -26,6 +29,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: "Hozea",
+			inject: false,
 			template: "./src/index.html"
 		})
 	],

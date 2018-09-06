@@ -1,11 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
+import { ON_NEED_PROXY, ON_PROXY_AUTH, AuthenticationCredentials } from './components/ProxySettingForm'
 
 let win: BrowserWindow
-let proxy = {
-	username: "",
-	password: ""
-}
-
+let proxy: AuthenticationCredentials
 
 const createWindow = () => {
 	win = new BrowserWindow({width: 800, height: 600})
@@ -29,12 +26,12 @@ app.on('activate', () => {
 
 app.on('login', (event, webContents, request, authInfo, callback) => {
 	if (authInfo.isProxy) {
-		webContents.send('need-proxy')
+		webContents.send(ON_NEED_PROXY)
 		event.preventDefault()
 		callback(proxy.username, proxy.password)
 	}
 })
 
-ipcMain.on('proxy-auth', (event: any, arg: any) => {
-	proxy = arg.proxy
+ipcMain.on(ON_PROXY_AUTH, (event: any, arg: AuthenticationCredentials) => {
+	proxy = arg
 })
