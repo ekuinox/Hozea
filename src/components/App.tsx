@@ -4,6 +4,7 @@ import ProxySettingForm from './ProxySettingForm'
 import Counter from './Counter/Container'
 import { ipcRenderer } from 'electron'
 import { ON_NEED_PROXY } from './ProxySettingForm'
+import axios from 'axios'
 
 interface State {
 	counter: number
@@ -56,18 +57,21 @@ export default class App extends React.Component<{}, State> {
 					<ProxySettingForm closeModal={() => {this.closeModal()}}/>
 					<button type="submit" onClick={() => {this.closeModal()}}>Close Modal</button>
 				</ReactModal>
+
+				<button onClick={() => {
+					axios({ url: "https://yahoo.co.jp", method: "GET"}).then(response => {console.log(response)})
+				}}>
+					はい
+				</button>
 			</div>
 		)
 	}
 	getIPAddress() {
-		fetch('https://httpbin.org/ip')
-			.then(res => res.json())
-			.then(res => {
-				this.setState({ip: res.origin})
-			}, error => {
-				this.setState({ip: error})
-			}
-		)
+		axios({
+			url: "https://httpbin.org/ip",
+			method: "GET",
+		})
+			.then(response => {this.setState({ip: response.data.origin})})
 	}
 	closeModal() {
 		this.setState({modalIsOpen: false})

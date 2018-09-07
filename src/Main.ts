@@ -1,12 +1,14 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain, session } from 'electron'
 import { ON_NEED_PROXY, ON_PROXY_AUTH, AuthenticationCredentials } from './components/ProxySettingForm'
 
 let win: BrowserWindow
 let proxy: {
 	credentials?: AuthenticationCredentials
-	ready: boolean
 } = {
-	ready: false
+	credentials: {
+		username: "",
+		password: ""
+	}
 }
 
 const createWindow = () => {
@@ -14,6 +16,9 @@ const createWindow = () => {
 	win.loadFile('dist/index.html')
 	win.on('closed', () => {
 		win = null
+	})
+	session.defaultSession.resolveProxy("http://yahoo.co.jp", (proxy) => {
+		console.log(proxy)
 	})
 }
 
@@ -33,11 +38,10 @@ app.on('login', (event, webContents, request, authInfo, callback) => {
 	if (authInfo.isProxy) {
 		webContents.send(ON_NEED_PROXY)
 		event.preventDefault()
-		if (proxy.ready) callback(proxy.credentials.username, proxy.credentials.password)
+		callback(proxy.credentials.username, proxy.credentials.password)
 	}
 })
 
 ipcMain.on(ON_PROXY_AUTH, (event: any, arg: AuthenticationCredentials) => {
 	proxy.credentials = arg
-	proxy.ready = true
 })
