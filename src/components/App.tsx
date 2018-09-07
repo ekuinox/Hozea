@@ -53,8 +53,8 @@ export default class App extends React.Component<{}, State> {
 						  }
 					}
 				>
-					<ProxySettingForm />
-					<button type="submit" onClick={() => {this.setState({modalIsOpen: false})}}>Close Modal</button>
+					<ProxySettingForm closeModal={() => {this.closeModal()}}/>
+					<button type="submit" onClick={() => {this.closeModal()}}>Close Modal</button>
 				</ReactModal>
 			</div>
 		)
@@ -68,5 +68,8 @@ export default class App extends React.Component<{}, State> {
 				this.setState({ip: error})
 			}
 		)
+	}
+	closeModal() {
+		this.setState({modalIsOpen: false})
 	}
 }
