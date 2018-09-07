@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain, session } from 'electron'
-import { ON_NEED_PROXY, ON_PROXY_AUTH, AuthenticationCredentials } from './components/ProxySettingForm'
+import { ON_NEED_PROXY, ON_PROXY_AUTH } from '../common/EventNameConstans'
+import { AuthenticationCredentials } from '../common/Interfaces'
 
 let win: BrowserWindow
 let proxy: {

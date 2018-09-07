@@ -6,8 +6,8 @@ module.exports = {
 	mode: env,
 	devtool: env == 'development' ? "inline-source-map" : undefined,
 	entry: {
-		'renderer': './src/Index.tsx',
-		'main': './src/Main.ts'
+		'renderer': './src/renderer/Index.tsx',
+		'main': './src/main/Main.ts'
 	},
 	output: {
 		path: `${__dirname}/dist`,

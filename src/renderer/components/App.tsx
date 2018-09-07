@@ -3,7 +3,7 @@ import * as ReactModal from 'react-modal'
 import ProxySettingForm from './ProxySettingForm'
 import Counter from './Counter/Container'
 import { ipcRenderer } from 'electron'
-import { ON_NEED_PROXY } from './ProxySettingForm'
+import { ON_NEED_PROXY } from '../../common/EventNameConstans'
 import axios from 'axios'
 
 interface State {

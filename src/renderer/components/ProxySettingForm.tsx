@@ -1,13 +1,7 @@
 import * as React from 'react'
 import { ipcRenderer } from 'electron'
-
-export const ON_NEED_PROXY = "need-proxy"
-export const ON_PROXY_AUTH = "proxy-auth"
-
-export interface AuthenticationCredentials {
-	username?: string
-	password?: string
-}
+import { AuthenticationCredentials } from '../../common/Interfaces'
+import { ON_PROXY_AUTH } from '../../common/EventNameConstans'
 
 interface Props {
 	closeModal: () => void
