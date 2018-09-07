@@ -1,3 +1,5 @@
+// Electronのindex.htmlから読み込まれるrenderer-process
+
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './components/App'

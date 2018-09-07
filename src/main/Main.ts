@@ -1,3 +1,6 @@
+// Electronのmain-process
+// webpackでbundleしたものを,Electronから呼び出す
+
 import { app, BrowserWindow, ipcMain, session } from 'electron'
 import { ON_NEED_PROXY, ON_PROXY_AUTH } from '../common/EventNameConstans'
 import { AuthenticationCredentials } from '../common/Interfaces'
