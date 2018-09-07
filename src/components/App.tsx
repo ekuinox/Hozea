@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactModal from 'react-modal'
 import ProxySettingForm from './ProxySettingForm'
+import Counter from './Counter/Container'
 import { ipcRenderer } from 'electron'
 import { ON_NEED_PROXY } from './ProxySettingForm'
 
@@ -27,10 +28,8 @@ export default class App extends React.Component<{}, State> {
 	render() {
 		return (
 			<div>
-				<input type='password' name='password'/>
-				
+				<Counter />
 
-				<p>こんにちは</p>
 				<p>counter: {this.state.counter}</p>
 				<p><button onClick={() => {this.setState({counter: this.state.counter + 1})}} >オセ！</button></p>
 				<p><button onClick={() => {localStorage.setItem("app.counter", this.state.counter.toString())}}>ほぞん</button></p>
