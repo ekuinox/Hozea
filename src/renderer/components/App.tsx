@@ -5,6 +5,7 @@ import Counter from './Counter/Container'
 import { ipcRenderer } from 'electron'
 import { ON_NEED_PROXY, ON_PROXY_SUCCESS, ON_PROXY_FAILED } from '../../common/EventNameConstans'
 import axios from 'axios'
+import TodoList from './TodoList/TodoList';
 
 interface State {
 	counter: number
@@ -30,6 +31,8 @@ export default class App extends React.Component<{}, State> {
 		return (
 			<div>
 				<Counter />
+
+				<TodoList />
 
 				<p>counter: {this.state.counter}</p>
 				<p><button onClick={() => {this.setState({counter: this.state.counter + 1})}} >オセ！</button></p>
