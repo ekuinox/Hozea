@@ -2,17 +2,19 @@
 // webpackでbundleしたものを,Electronから呼び出す
 
 import { app, BrowserWindow, ipcMain, session } from 'electron'
-import { ON_NEED_PROXY, ON_PROXY_AUTH } from '../common/EventNameConstans'
+import { ON_NEED_PROXY, ON_PROXY_AUTH, ON_PROXY_SUCCESS, ON_PROXY_FAILED } from '../common/EventNameConstans'
 import { AuthenticationCredentials } from '../common/Interfaces'
 
 let win: BrowserWindow
 let proxy: {
 	credentials?: AuthenticationCredentials
+	ok: boolean
 } = {
 	credentials: {
 		username: "",
 		password: ""
-	}
+	},
+	ok: false
 }
 
 const createWindow = () => {
@@ -21,9 +23,12 @@ const createWindow = () => {
 	win.on('closed', () => {
 		win = null
 	})
+	/* Proxy接続先を見つけてくる */
+	/* いらない
 	session.defaultSession.resolveProxy("http://yahoo.co.jp", (proxy) => {
 		console.log(proxy)
 	})
+	*/
 }
 
 app.on('ready', createWindow)
@@ -40,7 +45,8 @@ app.on('activate', () => {
 
 app.on('login', (event, webContents, request, authInfo, callback) => {
 	if (authInfo.isProxy) {
-		webContents.send(ON_NEED_PROXY)
+		// 認証失敗している/まだ認証情報がセットしていない場合に呼び出す
+		if (!proxy.ok) webContents.send(ON_NEED_PROXY)
 		event.preventDefault()
 		callback(proxy.credentials.username, proxy.credentials.password)
 	}
@@ -48,4 +54,12 @@ app.on('login', (event, webContents, request, authInfo, callback) => {
 
 ipcMain.on(ON_PROXY_AUTH, (event: any, arg: AuthenticationCredentials) => {
 	proxy.credentials = arg
+})
+
+ipcMain.on(ON_PROXY_SUCCESS, () => {
+	proxy.ok = true
+})
+
+ipcMain.on(ON_PROXY_FAILED, () => {
+	proxy.ok = false
 })

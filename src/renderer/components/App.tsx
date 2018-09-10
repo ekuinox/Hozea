@@ -3,7 +3,7 @@ import * as ReactModal from 'react-modal'
 import ProxySettingForm from './ProxySettingForm'
 import Counter from './Counter/Container'
 import { ipcRenderer } from 'electron'
-import { ON_NEED_PROXY } from '../../common/EventNameConstans'
+import { ON_NEED_PROXY, ON_PROXY_SUCCESS, ON_PROXY_FAILED } from '../../common/EventNameConstans'
 import axios from 'axios'
 
 interface State {
@@ -57,12 +57,6 @@ export default class App extends React.Component<{}, State> {
 					<ProxySettingForm closeModal={() => {this.closeModal()}}/>
 					<button type="submit" onClick={() => {this.closeModal()}}>Close Modal</button>
 				</ReactModal>
-
-				<button onClick={() => {
-					axios({ url: "https://yahoo.co.jp", method: "GET"}).then(response => {console.log(response)})
-				}}>
-					はい
-				</button>
 			</div>
 		)
 	}
@@ -71,8 +65,14 @@ export default class App extends React.Component<{}, State> {
 			url: "https://httpbin.org/ip",
 			method: "GET",
 		})
-			.then(response => {this.setState({ip: response.data.origin})})
-	}
+			.then(response => {
+				this.setState({ip: response.data.origin})
+				ipcRenderer.emit(ON_PROXY_SUCCESS)
+			})
+			.catch(reason => {
+				if (reason.response.status == 407) ipcRenderer.emit(ON_PROXY_FAILED)
+			})
+		}
 	closeModal() {
 		this.setState({modalIsOpen: false})
 	}
